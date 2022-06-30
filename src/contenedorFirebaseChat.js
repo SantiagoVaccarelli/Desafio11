@@ -19,7 +19,7 @@ class ContenedorFirebaseChat {
 
 	async save(object) {    
 		const product = await query.add(object)
-		object.id = product.id
+		object.id = object.id
 		query.doc(product.id).set(object)
 		return product.id
 	}

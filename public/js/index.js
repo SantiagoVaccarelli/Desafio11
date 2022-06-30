@@ -16,10 +16,9 @@ btnMensaje.addEventListener('click', (evt) => {
         socket.emit('nuevoMensaje', {
             "email" : email,
             "message" : mensaje,
-            "date" : new Date().toLocaleString()
+            "date" : new Date()
         })
     }
-    
 })
 
 
