@@ -38,6 +38,26 @@
                 <span id="basic-addon3">Email</span>
                 <input id="input-email" type="text" name="thumbnail" class="form-control" placeholder="Ingresá tu email" aria-label="email" aria-describedby="basic-addon1">
             </div>
+            <div>
+                <span id="basic-addon3">Nombre</span>
+                <input id="input-nombre" type="text" name="thumbnail" class="form-control" placeholder="Ingresá tu nombre" aria-label="nombre" aria-describedby="basic-addon1">
+            </div>
+            <div>
+                <span id="basic-addon3">Apellido</span>
+                <input id="input-apellido" type="text" name="thumbnail" class="form-control" placeholder="Ingresá tu apellido" aria-label="apellido" aria-describedby="basic-addon1">
+            </div>
+            <div>
+                <span id="basic-addon3">Edad</span>
+                <input id="input-edad" type="text" name="thumbnail" class="form-control" placeholder="Ingresá tu edad" aria-label="edad" aria-describedby="basic-addon1">
+            </div>
+            <div>
+                <span id="basic-addon3">Alias</span>
+                <input id="input-alias" type="text" name="thumbnail" class="form-control" placeholder="Ingresá tu alias" aria-label="alias" aria-describedby="basic-addon1">
+            </div>
+            <div>
+                <span id="basic-addon3">Avatar</span>
+                <input id="input-avatar" type="text" name="thumbnail" class="form-control" placeholder="Ingresá tu avatar" aria-label="avatar" aria-describedby="basic-addon1">
+            </div>
         </div>
 
         <div class="col-sm-5">
@@ -87,12 +107,17 @@
                 evt.preventDefault();
                 const email = document.getElementById('input-email').value;
                 const mensaje = document.getElementById('input-mensaje').value;
+                const nombre = document.getElementById('input-nombre').value;
+                const apellido = document.getElementById('input-apellido').value;
+                const edad = document.getElementById('input-edad').value;
+                const alias = document.getElementById('input-alias').value;
+                const avatar = document.getElementById('input-avatar').value;
                 
                 if (email !== '' && mensaje !== '') {
                 
                     socket.emit('nuevoMensaje', {
                         "id" : new Date().toLocaleString(),
-                        "userId" : email,
+                        "author" : {email, nombre, apellido, edad, alias, avatar},
                         "message" : mensaje
                     })
                 }

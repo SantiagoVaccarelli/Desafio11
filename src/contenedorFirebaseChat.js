@@ -18,10 +18,11 @@ class ContenedorFirebaseChat {
 	}
 
 	async save(object) {    
-		const product = await query.add(object)
-		object.id = object.id
-		query.doc(product.id).set(object)
-		return product.id
+		console.log(object)
+		// const product = await query.add(object)
+		// object.id = object.id
+		// query.doc(product.id).set(object)
+		// return product.id
 	}
 
 	async getAll() {

@@ -5,7 +5,7 @@ const app = express();
 const { Server } = require('socket.io');
 const { engine } = require('express-handlebars');
 const ContenedorDB = require('./contenedorDB');
-const ContenedorDBChat = require('./contenedorDBChat');
+// const ContenedorDBChat = require('./contenedorDBChat');
 const ContenedorFirebaseChat = require('./contenedorFirebaseChat');
 
 const server = http.createServer(app);
@@ -21,6 +21,14 @@ const chat = new ContenedorFirebaseChat();
 // Mocks
 
 const { faker } =  require('@faker-js/faker');
+
+// Normalizr
+const { normalize, schema } = require('normalizr') 
+const util = require('util')
+const autor = new schema.Entity('author')
+const message = new schema.Entity('message', {
+    autor: autor
+})
 
 dotenv.config();
 
@@ -62,6 +70,9 @@ io.on('connection', async(socket) => {
     socket.emit('cargarMensajes', mensajes)
     
     socket.on('nuevoMensaje', async(data) => {
+        console.log(data)
+        data = normalize(data, message)
+        console.log(util.inspect(data, false, 12, true))
         await chat.save(data);
         const mensajes = await chat.getAll();
         io.sockets.emit('actualizarMensajes', mensajes)
