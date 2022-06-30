@@ -6,6 +6,7 @@ const { Server } = require('socket.io');
 const { engine } = require('express-handlebars');
 const ContenedorDB = require('./contenedorDB');
 const ContenedorDBChat = require('./contenedorDBChat');
+const ContenedorFirebaseChat = require('./contenedorFirebaseChat');
 
 const server = http.createServer(app);
 const io = new Server(server);
@@ -14,7 +15,8 @@ const dotenv = require("dotenv");
 const db = require('../db');
 
 const contenedor = new ContenedorDB();
-const chat = new ContenedorDBChat();
+// const chat = new ContenedorDBChat();
+const chat = new ContenedorFirebaseChat();
 
 // Mocks
 
